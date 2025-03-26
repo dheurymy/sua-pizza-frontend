@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/authContext';
+import { toast } from 'react-toastify'; // Importa o toast
+import { Link} from 'react-router-dom'; // Importa componentes de roteamento
+
+import 'react-toastify/dist/ReactToastify.css'; // Importa o CSS do Toastify
 import '../assets/cadastro.css';
 
 const Cadastro = () => {
@@ -14,18 +18,23 @@ const Cadastro = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (senha !== confirmarSenha) {
-      alert('As senhas não correspondem.');
+      toast.error('As senhas não correspondem.', { position: 'top-right', autoClose: 3000 });
       return;
     }
 
     const sucesso = await register(nome, email, telefones, senha);
     if (sucesso) {
-      alert('Usuário registrado com sucesso!');
+      toast.success('Usuário registrado com sucesso!', { position: 'top-right', autoClose: 3000 });
+    } else {
+      toast.error('Erro ao registrar usuário.', { position: 'top-right', autoClose: 3000 });
     }
   };
 
   return (
     <div className="cadastro">
+      <h1>Crie seu perfil no Sua Pizza</h1>
+      <p>Preencha o formulário abaixo para criar seu perfil no Sua Pizza. Isso deixará seus pedidos muito mais fáceis.</p>
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -59,6 +68,7 @@ const Cadastro = () => {
         />
         <button type="submit">Cadastrar</button>
       </form>
+      <p className='entrar'>Já tem uma conta? <Link to="/clientes/login"><button>Acessar</button></Link></p> {/* Link para a página de login */}
     </div>
   );
 };
