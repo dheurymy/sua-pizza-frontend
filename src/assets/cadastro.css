@@ -1,0 +1,54 @@
+.cadastro {
+    width: 350px;
+    height: 350px;
+
+    border: 1px solid var(--corPrincipal);
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+
+    width: 95%;
+    height: 95%;
+    
+
+}
+
+input {
+    width: 90%;
+    height: 2em;
+
+    border: 1px solid var(--corPrincipal);
+    border-radius: 5px;
+
+    padding: 5px;
+}
+
+button {
+    width: 30%;
+    height: 2.5em;
+
+    border: 1px solid var(--corPrincipal);
+    border-radius: 5px;
+
+    background-color: var(--corBotao);
+    color: var(--corTexto);
+
+    font-size: 1em;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
