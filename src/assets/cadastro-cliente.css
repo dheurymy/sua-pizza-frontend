@@ -1,4 +1,4 @@
-.cadastro {
+.cadastro-cliente {
     width: 350px;
     height: 500px;
 
@@ -74,10 +74,22 @@
         font-weight: bold;
     
         cursor: pointer;
+        text-decoration: none;
 
         &:hover {
             color: var(--corFundo);
             background-color: var(--corDestaques);
+        }
+
+        & a {
+            color: var(--corTexto);
+
+            width: 100%;
+            height: 100%;
+
+            &:hover {
+                color: var(--corFundo);
+            }
         }
 
         

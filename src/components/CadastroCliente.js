@@ -3,10 +3,10 @@ import { useAuth } from '../context/authContext';
 import { toast } from 'react-toastify'; // Importa o toast
 import { Link} from 'react-router-dom'; // Importa componentes de roteamento
 
-import 'react-toastify/dist/ReactToastify.css'; // Importa o CSS do Toastify
-import '../assets/cadastro.css';
 
-const Cadastro = () => {
+import '../assets/cadastro-cliente.css';
+
+const CadastroCliente = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [telefones, setTelefones] = useState('');
@@ -31,7 +31,7 @@ const Cadastro = () => {
   };
 
   return (
-    <div className="cadastro">
+    <div className="cadastro-cliente">
       <h1>Crie seu perfil no Sua Pizza</h1>
       <p>Preencha o formulário abaixo para criar seu perfil no Sua Pizza. Isso deixará seus pedidos muito mais fáceis.</p>
 
@@ -66,11 +66,11 @@ const Cadastro = () => {
           value={confirmarSenha}
           onChange={(e) => setConfirmarSenha(e.target.value)}
         />
-        <button type="submit">Cadastrar</button>
+        <button type="submit"><Link to="/clientes/endereco">Cadastrar</Link></button>
       </form>
       <p className='entrar'>Já tem uma conta? <Link to="/clientes/login"><button>Acessar</button></Link></p> {/* Link para a página de login */}
     </div>
   );
 };
 
-export default Cadastro;
+export default CadastroCliente; // Exporta o componente CadastroCliente
