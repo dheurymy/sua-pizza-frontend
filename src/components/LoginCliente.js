@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/authContext';
-import { toast } from 'react-toastify'; // Importa o toast
+
 import { Link} from 'react-router-dom'; // Importa componentes de roteamento
 
 import '../assets/login-cliente.css';
@@ -14,28 +14,26 @@ const LoginCliente = () => {
   
     const {login } = useAuth();
   
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
       e.preventDefault();
-      
-  
       const sucesso = await login(email, senha);
       if (sucesso) {
-        toast.success('Usuário registrado com sucesso!', { position: 'top-right', autoClose: 3000 });
-      } else {
-        toast.error('Erro ao registrar usuário.', { position: 'top-right', autoClose: 3000 });
+        console.log('Usuário autenticado com sucesso!');
       }
     };
+  
   return (
     <div className='login'>
       <h1>Faça login no Sua Pizza</h1>
       <p>Preencha o formulário abaixo para fazer login no Sua Pizza. Isso deixará seus pedidos muito mais fáceis.</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         
         <input
@@ -43,6 +41,7 @@ const LoginCliente = () => {
           placeholder="Senha"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
+          required
         />
         
         <button type="submit"><Link to="/">Acessar</Link></button>

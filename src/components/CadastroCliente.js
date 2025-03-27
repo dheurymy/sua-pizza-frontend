@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/authContext';
 import { toast } from 'react-toastify'; // Importa o toast
-import { Link} from 'react-router-dom'; // Importa componentes de roteamento
-
-
+import { Link, useNavigate } from 'react-router-dom'; // Importa useNavigate
 import '../assets/cadastro-cliente.css';
 
 const CadastroCliente = () => {
@@ -14,6 +12,7 @@ const CadastroCliente = () => {
   const [confirmarSenha, setConfirmarSenha] = useState('');
 
   const { register } = useAuth();
+  const navigate = useNavigate(); // Hook para navegar entre páginas
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +24,7 @@ const CadastroCliente = () => {
     const sucesso = await register(nome, email, telefones, senha);
     if (sucesso) {
       toast.success('Usuário registrado com sucesso!', { position: 'top-right', autoClose: 3000 });
+      navigate('/clientes/endereco'); // Navega para a página de cadastro de endereço
     } else {
       toast.error('Erro ao registrar usuário.', { position: 'top-right', autoClose: 3000 });
     }
@@ -41,32 +41,41 @@ const CadastroCliente = () => {
           placeholder="Nome"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
+          required
         />
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type="text"
           placeholder="Telefone"
           value={telefones}
           onChange={(e) => setTelefones(e.target.value)}
+          required
         />
         <input
           type="password"
           placeholder="Senha"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
+          required
+          autoComplete="new-password"
+
         />
         <input
           type="password"
           placeholder="Confirme a senha"
           value={confirmarSenha}
           onChange={(e) => setConfirmarSenha(e.target.value)}
+          required
+          autoComplete="new-password"
+
         />
-        <button type="submit"><Link to="/clientes/endereco">Cadastrar</Link></button>
+        <button type="submit">Cadastrar</button>
       </form>
       <p className='entrar'>Já tem uma conta? <Link to="/clientes/login"><button>Acessar</button></Link></p> {/* Link para a página de login */}
     </div>
